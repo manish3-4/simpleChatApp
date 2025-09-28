@@ -3,16 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous Chat Group</title>
+    <title>Anonymously Chat Group</title>
     
     <link rel="stylesheet" href="style.css"> 
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
     <div class="chat-app">
         <header>
-            <div class="group-name">Fun Friday Group</div>
+            <div class="header-left">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <div class="header-center">
+                <div class="header-avatar-group"><img src="avatar1.jpg" alt="Group Avatar"></div>
+                <div class="group-name">Fun Friday Group</div>
+            </div>
+            <div class="header-right">
+                <i class="fas fa-user-friends"></i>
+            </div>
         </header>
 
         <main class="chat-container" id="chat-container">
@@ -21,10 +32,12 @@
         <footer>
             <form id="message-form">
                 <input type="text" id="message-input" placeholder="Type a message..." required>
-                <button type="submit" id="send-button">Send</button> 
+                <button type="submit" id="send-button">
+                    <i class="fas fa-paper-plane"></i> 
+                </button> 
             </form>
             <div class="anonymous-note">
-                Now you're appearing as Anonymous!
+                <i class="fas fa-lock"></i> Now you're appearing as Anonymous!
             </div>
         </footer>
     </div>

@@ -41,39 +41,77 @@ socket.on('receive_message', (message) => {
 function renderMessage(message) {
     const isSelf = message.sender_id === CURRENT_USER_ID;
     
-    // Determine the sender name: 'Anonymous', actual username, or null for self-sent messages
+    // Determine the sender name and avatar source
     let senderName = message.is_anonymous ? 'Anonymous' : message.username;
+    let avatarSrc = null;
+    
+    if (!isSelf) {
+        // Simple consistent avatar assignment based on sender_id's parity
+        avatarSrc = (message.sender_id % 2 === 0) ? 'avatar2.jpg' : 'avatar1.jpg';
+    }
+
     if (isSelf) {
-        // As per the image example, self-sent messages don't display a username header.
+        // Self-sent messages don't display a username header or avatar
         senderName = null; 
     }
 
     const messageWrapper = document.createElement('div');
     messageWrapper.classList.add('message-wrapper', isSelf ? 'message-self' : 'message-other');
 
-    // 1. Sender Name/Header (only rendered for messages from others)
+    // 1. Avatar (rendered for messages from others)
+    if (avatarSrc) {
+        const avatarDiv = document.createElement('div');
+        avatarDiv.classList.add('message-avatar');
+        const avatarImg = document.createElement('img');
+        avatarImg.src = avatarSrc; // Assumes images are in the frontend directory
+        avatarImg.alt = 'Avatar';
+        avatarDiv.appendChild(avatarImg);
+        messageWrapper.appendChild(avatarDiv);
+    }
+    
+    // 2. Content Area (Username + Bubble)
+    const contentArea = document.createElement('div');
+    contentArea.classList.add('message-content-area'); 
+
+    // 2a. Sender Name/Header 
     if (senderName) {
         const senderHeader = document.createElement('div');
         senderHeader.classList.add('message-sender');
         senderHeader.textContent = senderName;
-        messageWrapper.appendChild(senderHeader);
+        contentArea.appendChild(senderHeader);
     }
 
-    // 2. Message Bubble
+    // 2b. Message Bubble
     const bubble = document.createElement('div');
     bubble.classList.add('message-bubble');
-    bubble.textContent = message.content;
     
-    // Optional: Add timestamp
+    // Message Content
+    let bubbleContent = message.content;
+    
+    // Timestamp
     const time = new Date(message.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-    bubble.innerHTML += ` <span class="timestamp">${time}</span>`;
     
-    messageWrapper.appendChild(bubble);
+    // Combine content and timestamp (and checkmark for self)
+    bubble.innerHTML = `${bubbleContent} <span class="timestamp">${time}</span>`;
+    
+    // Add checkmark/tick for self-sent messages
+    if (isSelf) {
+        // Using a basic checkmark for simplicity, replace with an icon if desired
+        bubble.innerHTML += ` <span class="checkmark">✓</span>`; 
+    }
+    
+    contentArea.appendChild(bubble);
+    
+    // Append the content area to the wrapper
+    messageWrapper.appendChild(contentArea);
     chatContainer.appendChild(messageWrapper);
 }
 
 function scrollToBottom() {
-    chatContainer.scrollTop = chatContainer.scrollHeight;
+    // Wait for the next paint cycle to ensure the message is fully rendered before scrolling
+    requestAnimationFrame(() => {
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    });
 }
 
 // ----------------------
@@ -116,3 +154,6 @@ messageForm.addEventListener('submit', (e) => {
         messageInput.value = ''; // Clear input
     }
 });
+
+// Load history when the page loads, in case Socket.io connection is slow
+window.addEventListener('load', loadMessageHistory);

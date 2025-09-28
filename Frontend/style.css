@@ -1,6 +1,6 @@
-/* public/style.css */
+/* chatapp/frontend/style.css */
 body {
-    font-family: Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
@@ -17,31 +17,80 @@ body {
     flex-direction: column;
 }
 
+/* --- Header Styling (Matches Image) --- */
 header {
-    padding: 15px;
-    background-color: #900000; /* Dark red header */
-    color: white;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background-color: #ffffff; /* White header as in the image */
+    color: #333;
+    border-bottom: 1px solid #ddd;
 }
 
+.header-center {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.group-name {
+    font-size: 1.1em;
+}
+
+.header-avatar-group img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.header-left, .header-right {
+    color: #900000; /* Dark Red icons */
+    font-size: 1.2em;
+}
+
+/* --- Chat Container --- */
 .chat-container {
     flex-grow: 1;
     padding: 10px;
     overflow-y: auto;
+    background-color: #f7f7f7; /* Light background */
 }
 
 /* --- Message Bubble Styling --- */
 
 .message-wrapper {
+    display: flex; 
+    margin: 15px 0;
+    clear: both;
+}
+
+/* Wrapper for sender name and bubble */
+.message-content-area {
     display: flex;
-    flex-direction: column;
-    margin: 10px 0;
-    clear: both; /* Ensures new line */
+    flex-direction: column; 
+    max-width: 70%;
+}
+
+.message-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0; /* Prevents avatar from shrinking */
+}
+
+.message-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .message-sender {
-    font-size: 0.8em;
-    font-weight: bold;
+    font-size: 0.9em;
+    font-weight: 500;
     margin-bottom: 3px;
     color: #333;
 }
@@ -49,30 +98,63 @@ header {
 .message-bubble {
     padding: 10px 15px;
     border-radius: 20px;
-    max-width: 70%;
     word-wrap: break-word;
+    /* Use flex to position timestamp/checkmark */
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 5px;
+    line-height: 1.4;
 }
 
-/* Messages from the current user (Receiver in the image, Dark Red) */
+.timestamp {
+    font-size: 0.7em;
+    opacity: 0.8;
+    white-space: nowrap; 
+}
+
+/* Checkmark styling (assuming using an emoji or similar for simplicity) */
+.checkmark {
+    font-size: 0.65em;
+    color: #900000;
+}
+
+/* Messages from the current user (Self, Dark Red) */
 .message-self {
-    align-self: flex-end; /* Pushes bubble to the right */
-    background-color: #900000; 
-    color: white;
-    border-bottom-right-radius: 5px; /* Tweak for tail effect */
-}
-.message-wrapper.message-self {
-    align-items: flex-end; /* Aligns sender name/timestamp to the right */
+    justify-content: flex-end; 
 }
 
-/* Messages from other users (Sender in the image, Light Grey) */
-.message-other {
-    align-self: flex-start; /* Pushes bubble to the left */
-    background-color: #e9e9e9;
-    color: black;
-    border-bottom-left-radius: 5px; /* Tweak for tail effect */
+.message-wrapper.message-self .message-content-area {
+    align-items: flex-end; 
+    max-width: 70%;
 }
-.message-wrapper.message-other {
-    align-items: flex-start; /* Aligns sender name/timestamp to the left */
+
+.message-wrapper.message-self .message-bubble {
+    background-color: #900000; /* Dark Red */
+    color: white;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 5px; 
+}
+
+.message-wrapper.message-self .timestamp {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* Messages from other users (Other, Light Grey) */
+.message-other {
+    justify-content: flex-start;
+    gap: 8px; /* Space between avatar and message bubble */
+}
+
+.message-wrapper.message-other .message-content-area {
+    align-items: flex-start;
+}
+
+.message-wrapper.message-other .message-bubble {
+    background-color: #e9e9e9; /* Light Grey */
+    color: black;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 5px; 
 }
 
 /* --- Footer/Input Styling --- */
@@ -84,14 +166,16 @@ footer {
 
 #message-form {
     display: flex;
-    gap: 10px;
+    gap: 8px;
+    align-items: center;
 }
 
 #message-input {
     flex-grow: 1;
-    padding: 10px;
+    padding: 12px 15px;
     border: 1px solid #ccc;
-    border-radius: 20px;
+    border-radius: 25px;
+    font-size: 1em;
 }
 
 #send-button {
@@ -105,11 +189,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-#send-button img {
-    width: 20px;
-    height: 20px;
-    filter: invert(1); /* Makes a placeholder icon white */
+    font-size: 18px; /* Size for the paper-plane icon */
 }
 
 .anonymous-note {
@@ -117,4 +197,8 @@ footer {
     font-size: 0.75em;
     color: #666;
     margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }

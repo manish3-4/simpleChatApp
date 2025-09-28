@@ -1,5 +1,5 @@
 // chatapp/backend/server.js
-require('dotenv').config({ path: './.env' }); // IMPORTANT: Specify the path to .env
+require('dotenv').config({ path: './.env/' }); // IMPORTANT: Specify the path to .env
 const express = require('express');
 const http = require('http');
 const cors = require('cors');
