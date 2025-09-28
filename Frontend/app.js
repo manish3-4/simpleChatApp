@@ -47,7 +47,7 @@ function renderMessage(message) {
     
     if (!isSelf) {
         // Simple consistent avatar assignment based on sender_id's parity
-        avatarSrc = 'public/user.png';
+        avatarSrc = (senderName == 'Anonymous') ? 'public/user.png' : '/public/avatar2.jpg';
     }
 
     if (isSelf) {
@@ -202,3 +202,16 @@ function addAnonymousMessage(message) {
     // Scroll to the bottom to ensure the message is visible
     scrollToBottom();
 }
+
+
+//file input
+
+const fileInput = document.getElementById('file-input');
+
+fileInput.addEventListener('change', (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+        console.log('File selected:', selectedFile.name);
+        // Add logic to handle the file (e.g., upload it to the server)
+    }
+});

@@ -166,24 +166,80 @@ header {
 }
 
 /* --- Footer/Input Styling --- */
+/* Footer styling */
 footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
-    border-top: 1px solid #ccc;
-    background-color: #f9f9f9;
+    background-color: #f9f9f9; /* Optional: Adjust background color */
+    border-top: 1px solid #ddd; /* Optional: Add a border at the top */
+}
+
+.message-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 5px 20px;
+    gap: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 #message-form {
     display: flex;
-    gap: 8px;
     align-items: center;
+    width: 100%;
+    gap: 13px;
+    
 }
 
 #message-input {
-    flex-grow: 1;
-    padding: 12px 15px;
-    border: 1px solid #ccc;
-    border-radius: 25px;
-    font-size: 1em;
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 30px;
+    font-size: 14px;
+    color: #333;
+}
+
+.footer-icons {
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.footer-icons .icon {
+    width: 25px; /* Adjust size of the icons */
+    height: 25px;
+    cursor: pointer;
+}
+
+.send-button {
+    background-color: #A2190A;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.send-button i {
+    color: #fff; /* White icon color */
+    font-size: 18px;
+}
+
+.send-button:hover {
+    background-color: #b71c1c; /* Darker red on hover */
 }
 
 #send-button {

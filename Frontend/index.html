@@ -32,11 +32,24 @@
 
         <footer>
             <form id="message-form">
-                
-                <input type="text" id="message-input" placeholder="Type a message..." required>
-                <button type="submit" id="send-button">
-                    <i class="fas fa-paper-plane"></i> 
-                </button> 
+                <div class="message-form">
+                    <input type="text" id="message-input" placeholder="Type a message..." required>
+                    <div class="footer-icons">
+                        <label for="file-input">
+                        <label for="file-input">
+                            <img src="public/cam.png" alt="Camera Icon" class="icon">
+                        </label>
+                        <input type="file" id="file-input" class="file-input" accept="image/*" capture="camera" style="display: none;">
+                            <img src="public/tag.png" alt="Tag Icon" class="icon">
+                        </label>
+                        <input type="file" id="file-input" class="file-input" style="display: none;">
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" id="send-button" class="send-button">
+                        <img src="public/send.png" alt="send Button" height="44px" width="44px"/>
+                    </button>
+                </div>
             </form>
         </footer>
     </div>
