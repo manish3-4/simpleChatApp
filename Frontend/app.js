@@ -47,7 +47,7 @@ function renderMessage(message) {
     
     if (!isSelf) {
         // Simple consistent avatar assignment based on sender_id's parity
-        avatarSrc = (message.sender_id % 2 === 0) ? 'avatar2.jpg' : 'avatar1.jpg';
+        avatarSrc = 'public/user.png';
     }
 
     if (isSelf) {
@@ -157,3 +157,48 @@ messageForm.addEventListener('submit', (e) => {
 
 // Load history when the page loads, in case Socket.io connection is slow
 window.addEventListener('load', loadMessageHistory);
+
+// ----------------------
+// 4. Anonymous functionality 
+// ----------------------
+
+const headerRight = document.querySelector('.header-right');
+const anonymousImage = document.querySelector('.header-right img');
+const anonymousNote = document.querySelector('.anonymous-note');
+let isAnonymous = false;
+
+// Add a click event listener to the header-right div
+headerRight.addEventListener('click', () => {
+    if (!isAnonymous) {
+        // Switch to anonymous mode
+        anonymousImage.src = 'public/annoafter.png'; // Replace with the new image path
+        anonymousNote.innerHTML = '<i class="fas fa-car"></i> Now you\'re appearing as Anonymous!';
+        addAnonymousMessage('You are now appearing as Anonymous!');
+    } else {
+        // Switch back to original mode
+        anonymousImage.src = 'public/annobefore.png'; // Replace with the original image path
+        anonymousNote.innerHTML = '<i class="fas fa-lock"></i> You are no longer Anonymous!';
+        addAnonymousMessage('You are no longer Anonymous!');
+    }
+    isAnonymous = !isAnonymous;
+});
+
+
+function addAnonymousMessage(message) {
+    const divider = document.createElement('hr'); // Create a horizontal divider
+    divider.style.border = '1px solid #ccc'; // Style the divider
+
+    const anonymousMessage = document.createElement('div');
+    anonymousMessage.classList.add('anonymous-message');
+    anonymousMessage.textContent = message;
+    anonymousMessage.style.textAlign = 'center'; // Center the message
+    anonymousMessage.style.color = '#888'; // Optional: Style the message text
+    anonymousMessage.style.margin = '10px 0'; // Add spacing
+
+    // Append the divider and message to the chat container
+    chatContainer.appendChild(divider);
+    chatContainer.appendChild(anonymousMessage);
+
+    // Scroll to the bottom to ensure the message is visible
+    scrollToBottom();
+}

@@ -1,18 +1,20 @@
 /* chatapp/frontend/style.css */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    min-height: 100vh;
     background-color: #f0f0f0;
+    margin: 0
 }
 
 .chat-app {
     width: 100%;
     max-width: 400px;
-    margin: 0 auto;
     background-color: white;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    height: 100vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
 }
@@ -31,23 +33,29 @@ header {
 .header-center {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
     font-weight: bold;
+    margin-right: 100px;
 }
 
 .group-name {
     font-size: 1.1em;
+    align-items: center;
+    color: #A2190A;
 }
-
+.anonymous {
+    height: 3.6vh;
+    width: 3.6vh;
+}
 .header-avatar-group img {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
 }
 
 .header-left, .header-right {
-    color: #900000; /* Dark Red icons */
+    color: #A2190A; /* Dark Red icons */
     font-size: 1.2em;
 }
 
@@ -115,7 +123,7 @@ header {
 /* Checkmark styling (assuming using an emoji or similar for simplicity) */
 .checkmark {
     font-size: 0.65em;
-    color: #900000;
+    color: #A2190A;
 }
 
 /* Messages from the current user (Self, Dark Red) */
@@ -129,7 +137,7 @@ header {
 }
 
 .message-wrapper.message-self .message-bubble {
-    background-color: #900000; /* Dark Red */
+    background-color: #A2190A; /* Dark Red */
     color: white;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 5px; 
@@ -179,7 +187,7 @@ footer {
 }
 
 #send-button {
-    background-color: #900000;
+    background-color: #A2190A;
     color: white;
     border: none;
     border-radius: 50%;
