@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonymous Chat Group</title>
+    
+    <link rel="stylesheet" href="style.css"> 
+    
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="chat-app">
+        <header>
+            <div class="group-name">Fun Friday Group</div>
+        </header>
+
+        <main class="chat-container" id="chat-container">
+            </main>
+
+        <footer>
+            <form id="message-form">
+                <input type="text" id="message-input" placeholder="Type a message..." required>
+                <button type="submit" id="send-button">Send</button> 
+            </form>
+            <div class="anonymous-note">
+                Now you're appearing as Anonymous!
+            </div>
+        </footer>
+    </div>
+    
+    <script src="app.js"></script> 
+</body>
+</html>
