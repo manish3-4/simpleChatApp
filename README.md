@@ -5,27 +5,23 @@ A simple, lightweight chat application for real-time communication, built by [ma
 ## Features
 
 - Real-time messaging
-- User authentication (if implemented)
 - Clean and intuitive UI
 - Basic message history
 - Lightweight and easy to deploy
 
 ## Technologies Used
 
-- **Frontend:** (e.g.  HTML/CSS/JS)  
-- **Backend:** (e.g. Node.js, Express, Python, Java)
-- **Database:** (e.g. MySQL)
-- **Socket:** (e.g. Socket.io, WebSockets)
-
-*Please update the above sections with actual technologies used in your implementation.*
+- **Frontend:**   HTML/CSS/JS  
+- **Backend:** Node.js, Express, Python
+- **Database:** MySQL
+- **Socket:** Socket.io
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js and npm installed (if using Node backend)
-- Any other requirements as per your tech stack
-
+- Node.js and npm installed
+- 
 ### Installation
 
 1. Clone the repository:
@@ -42,11 +38,8 @@ A simple, lightweight chat application for real-time communication, built by [ma
     npm start
     ```
 
-*Adjust setup instructions based on your actual stack.*
-
 ## Usage
 
-- Register or log in (if authentication is enabled)
 - Start chatting with other users in real-time
 
 ## Contributing
@@ -63,4 +56,3 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-*Feel free to modify this README to match your project's specific details and setup instructions.*
